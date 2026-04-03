@@ -5,12 +5,12 @@ exports.listTrainers = async (req, res) => {
     res.render("trainers/index", { trainers });
 };
 
-exports.showTrainer = async (req, res) => {
+exports.showTrainer = async (req, res) => {
     const trainer = await db.getTrainerById(req.params.id);
     const myPokemons = await db.getPokemonsByTrainer(req.params.id);
     const allPokemons = await db.getAllPokemons();
     // Filter out pokemons the trainer already has
-    const myPokemonIds = myPokemons.map (p => p.id);
+    const myPokemonIds = myPokemons.map(p => p.id);
     const availablePokemons = allPokemons.filter(p => !myPokemonIds.includes(p.id));
     res.render("trainers/detail", { trainer, myPokemons, availablePokemons });
 };
@@ -35,7 +35,7 @@ exports.updateTrainer = async (req, res) => {
 };
 
 exports.deleteTrainerForm = async (req, res) => {
-    const trainer = await db.gerTrainerById(req.params.id);
+    const trainer = await db.getTrainerById(req.params.id);
     res.render("trainers/delete", { trainer });
 };
 
@@ -50,6 +50,6 @@ exports.addPokemon = async (req, res) => {
 };
 
 exports.removePokemon = async (req, res) => {
-    await db.removePokemonFormTRainer(req.params.id, req.body.pokemon_id);
+    await db.removePokemonFromTrainer(req.params.id, req.body.pokemon_id);
     res.redirect(`/trainers/${req.params.id}`);
 };
