@@ -3,7 +3,7 @@ const pool = require("./pool");
 // TYPES
 
 async function getAllTypes() {
-    const { row } = await pool.query("SELECT * FROM types ORDER BY name");
+    const { rows } = await pool.query("SELECT * FROM types ORDER BY name");
     return rows;
 }
 
@@ -11,7 +11,7 @@ async function getTypeById(id) {
     const { rows } = await pool.query(
         "SELECT * FROM types WHERE id = $1", [id]
     );
-    return row[0];
+    return rows[0];
 }
 
 async function createType({ name }) {
@@ -43,11 +43,12 @@ async function getPokemonById(id) {
     const { rows } = await pool.query(`
         SELECT pokemons.*, types.name AS type_name
         FROM pokemons
-        LEFT JOIN types ON pokemons.types_id = types.id
+        LEFT JOIN types ON pokemons.type_id = types.id
         WHERE pokemons.id = $1
     `, [id]);
     return rows[0];
 }
+
 
 async function getPokemonByType(typeId) {
     const { rows } = await pool.query(
@@ -89,12 +90,13 @@ async function getTrainerById(id) {
 }
 
 // Get all pokemons belonging a trainer (via join table)
-async function getPokemonByTrainer(trainerId) {
+async function getPokemonsByTrainer(trainerId) {
     const { rows } = await pool.query(`
         SELECT pokemons.*, types.name AS type_name
         FROM pokemons
         JOIN trainer_pokemon ON pokemons.id = trainer_pokemon.pokemon_id
-        WHERE trainer_pokmon.trainer_id = $1
+        LEFT JOIN types ON pokemons.type_id = types.id
+        WHERE trainer_pokemon.trainer_id = $1
         ORDER BY pokemons.name
     `, [trainerId]);
     return rows;
@@ -138,7 +140,7 @@ module.exports = {
     getAllTypes, getTypeById, createType, updateType, deleteType,
     getAllPokemons, getPokemonById, getPokemonByType,
     createPokemon, updatePokemon, deletePokemon,
-    getAllTrainers, getTrainerById, getPokemonByTrainer,
+    getAllTrainers, getTrainerById, getPokemonsByTrainer,
     createTrainer, updateTrainer, deleteTrainer,
     addPokemonToTrainer, removePokemonFromTrainer,
 };
