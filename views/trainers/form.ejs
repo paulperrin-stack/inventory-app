@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head><title><%= trainer ? "Edit" : "New" %> Trainer</title></head>
+<body>
+    <h1><%= trainer ? "Edit Trainer" : "New Trainer" %></h1>
+
+    <form method="POST" action="<%= trainer ? `/trainers/${trainer.id}/update` : '/trainers' %>">
+
+        <label>Name</label><br>
+        <input type="text" name="name" value="<%= trainer ? trainer.name : '' %>" required /><br><br>
+
+        <label>Hometown</label><br>
+        <input type="text" name="hometown" value="<%= trainer ? trainer.hometown : '' %>" /><br><br>
+
+        <button type="submit"><%= trainer ? "Save Changes" : "Create Trainer" %></button>
+    </form>
+    <a href="/">← Home</a>
+</body>
+</html>

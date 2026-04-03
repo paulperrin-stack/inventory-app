@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head><title>Delete Type</title></head>
+<body>
+    <h1>Delete "<%= type.name %>" type?</h1>
+    <p>⚠️ Pokémon of this type will lose their type (set to null).</p>
+    <form method="POST" action="/types/<%= type.id %>/delete">
+        <button type="submit">Yes, Delete</button>
+    </form>
+    <a href="/types/<%= type.id %>">Cancel</a>
+</body>
+</html>

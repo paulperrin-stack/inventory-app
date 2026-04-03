@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head><title><%= type ? "Edit" : "New" %> Type</title></head>
+<body>
+    <h1><%= type ? "Edit Type" : "New Type" %></h1>
+
+    <form method="POST" action="<%= type ? `/types/${type.id}/update` : '/types' %>">
+        <label>Name</label><br>
+        <input type="text" name="name" value="<%= type ? type.name : '' %>" required /><br><br>
+        <button type="submit"><%= type ? "Save Changes" : "Create Type" %></button>
+    </form>
+    <a href="/">← Home</a>
+</body>
+</html>

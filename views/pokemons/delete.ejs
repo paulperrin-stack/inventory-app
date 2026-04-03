@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head><title>Delete Pokémon</title></head>
+<body>
+    <h1>Delete "<%= pokemon.name %>"?</h1>
+    <p>This cannot be undone.</p>
+    <form method="POST" action="/pokemons/<%= pokemon.id %>/delete">
+        <button type="submit">Yes, Delete</button>
+    </form>
+    <a href="/pokemons/<%= pokemon.id %>">Cancel</a>
+</body>
+</html>

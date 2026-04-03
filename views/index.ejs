@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pokédex</title>
+</head>
+<body>
+    <h1>🔴 Pokédex</h1>
+
+    <h2>Types (<%= types.length %></h2>
+    <ul>
+        <% types.forEach(t => { %>
+            <li><a href="/types/<%= t.id %>"><%= t.name %></a></li>
+        <% }) %>
+    </ul>
+    <a href="/types/new">+ New Type</a>
+
+    <h2>All Pokémon (<%= pokemons.length %>)</h2>
+    <ul>
+        <% pokemons.forEach(p => { %>
+            <li><a href="/pokemons/<%= p.id %>"><%= p.name %></a> — <%= p.type_name %> (HP: <%= p.hp %>)</li>
+        <% }) %>
+    </ul>
+    <a href="/pokemons/new">+ New Pokémon</a>
+
+    <h2>Trainers (<%= trainers.length %>)</h2>
+    <ul>
+        <% trainers.forEach(t => { %>
+            <li><a href="/trainers/<%= t.id %>"><%= t.name %></a> from <%= t.hometown %></li>
+        <% }) %>
+    </ul>
+    <a href="/trainers/new">+ New Trainer</a>
+</body>
+</html>

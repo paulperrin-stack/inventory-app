@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head><title><%= trainer.name %></title></head>
+<body>
+    <h1>Trainer: <%= trainer.name %></h1>
+    <p>Hometown: <%= trainer.hometown %></p>
+    <a href="/trainers/<%= trainer.id %>/edit">Edit</a> |
+    <a href="/trainers/<%= trainer.id %>/delete">Delete</a>
+
+    <h2>My Pokémon Team</h2>
+    <% if (myPokemons.length === 0) { %>
+        <p>No Pokémon yet!</p>
+    <% } else { %>
+        <ul>
+        <% myPokemons.forEach(p => { %>
+            <li>
+            <a href="/pokemons/<%= p.id %>"><%= p.name %></a>
+            (<%= p.type_name %>, HP: <%= p.hp %>)
+            <form method="POST" action="/trainers/<%= trainer.id %>/remove-pokemon" style="display:inline">
+                <input type="hidden" name="pokemon_id" value="<%= p.id %>" />
+                <button type="submit">Remove</button>
+            </form>
+            </li>
+        <% }) %>
+        </ul>
+    <% } %>
+
+    <h2>Add a Pokémon</h2>
+    <% if (availablePokemons.length === 0) { %>
+        <p>All Pokémon are already on this team!</p>
+    <% } else { %>
+        <form method="POST" action="/trainers/<%= trainer.id %>/add-pokemon">
+        <select name="pokemon_id">
+            <% availablePokemons.forEach(p => { %>
+            <option value="<%= p.id %>"><%= p.name %> (<%= p.type_name %>)</option>
+            <% }) %>
+        </select>
+        <button type="submit">Add</button>
+        </form>
+    <% } %>
+
+    <br><a href="/">← Home</a>
+</body>
+</html>

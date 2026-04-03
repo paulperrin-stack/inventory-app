@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head><title>Types</title></head>
+<body>
+    <h1>All Types</h1>
+    <ul>
+        <% types.forEach(t => { %>
+            <li><a href="/types/<%= t.id %>"><%= t.name %></a></li>
+        <% }) %>
+    </ul>
+    <a href="/types/new">+ New Type</a> |
+    <a href="/">← Home</a>
+</body>
+</html>

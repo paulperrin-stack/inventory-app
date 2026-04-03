@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head><title>Trainers</title></head>
+<body>
+    <h1>All Trainers</h1>
+    <ul>
+        <% trainers.forEach(t => { %>
+        <li><a href="/trainers/<%= t.id %>"><%= t.name %></a> — <%= t.hometown %></li>
+        <% }) %>
+    </ul>
+    <a href="/trainers/new">+ New Trainer</a> |
+    <a href="/">← Home</a>
+</body>
+</html>

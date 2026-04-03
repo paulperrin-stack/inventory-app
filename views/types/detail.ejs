@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><title><%= type.name %> Type</title></head>
+<body>
+    <h1><%= type.name %> Type</h1>
+    <a href="/types/<%= type.id %>/edit">Edit</a> |
+    <a href="/types/<%= type.id %>/delete">Delete</a>
+
+    <h2>Pokémon of this type</h2>
+    <% if (pokemons.length === 0) { %>
+        <p>No Pokémon here yet.</p>
+    <% } else { %>
+        <ul>
+        <% pokemons.forEach(p => { %>
+            <li><a href="/pokemons/<%= p.id %>"><%= p.name %></a> (HP: <%= p.hp %>)</li>
+        <% }) %>
+        </ul>
+    <% } %>
+
+    <a href="/pokemons/new">+ Add Pokémon</a> |
+    <a href="/">← Home</a>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title><%= pokemon.name %></title></head>
+<body>
+    <h1><%= pokemon.name %></h1>
+    <p>Type: <a href="/types/<%= pokemon.type_id %>"><%= pokemon.type_name %></a></p>
+    <p>HP: <%= pokemon.hp %></p>
+
+    <a href="/pokemons/<%= pokemon.id %>/edit">Edit</a> |
+    <a href="/pokemons/<%= pokemon.id %>/delete">Delete</a> |
+    <a href="/">← Home</a>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head><title>Delete Trainer</title></head>
+<body>
+    <h1>Delete trainer "<%= trainer.name %>"?</h1>
+    <p>Their Pokémon will NOT be deleted — just removed from their team.</p>
+    <form method="POST" action="/trainers/<%= trainer.id %>/delete">
+        <button type="submit">Yes, Delete</button>
+    </form>
+    <a href="/trainers/<%= trainer.id %>">Cancel</a>
+</body>
+</html>

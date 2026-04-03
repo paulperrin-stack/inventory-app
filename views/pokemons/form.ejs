@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head><title><%= pokemon ? "Edit" : "New" %> Pokémon</title></head>
+<body>
+    <h1><%= pokemon ? "Edit Pokémon" : "New Pokémon" %></h1>
+
+    <form method="POST" action="<%= pokemon ? `/pokemons/${pokemon.id}/update` : '/pokemons' %>">
+
+        <label>Name</label><br>
+        <input type="text" name="name" value="<%= pokemon ? pokemon.name : '' %>" required /><br><br>
+
+        <label>HP</label><br>
+        <input type="number" name="hp" value="<%= pokemon ? pokemon.hp : '' %>" required /><br><br>
+
+        <label>Type</label><br>
+        <select name="type_id">
+        <option value="">-- None --</option>
+        <% types.forEach(t => { %>
+            <option value="<%= t.id %>" <%= pokemon && pokemon.type_id == t.id ? 'selected' : '' %>>
+            <%= t.name %>
+            </option>
+        <% }) %>
+        </select><br><br>
+
+        <button type="submit"><%= pokemon ? "Save Changes" : "Create Pokémon" %></button>
+    </form>
+    <a href="/">← Home</a>
+</body>
+</html>
